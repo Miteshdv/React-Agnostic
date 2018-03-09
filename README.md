@@ -9,3 +9,7 @@
 4. Run `npm install` to install required node modules and bower components.
 5. Run `gulp build` to build the application.
 6. Run `npm start` to launch it.
+
+
+
+<img src="https://raw.githubusercontent.com/Miteshdv/React-Agnostic/master/React2Angular.png"></img>
