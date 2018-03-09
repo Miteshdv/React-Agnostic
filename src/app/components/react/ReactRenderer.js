@@ -14,7 +14,7 @@ const ReactInitializer = (function(Component,containerId){
         getCompRef().state
     }
 
-    var renderComponent = (props,moduleRef,resolve) => {         
+    const renderComponent = (props,moduleRef,resolve) => {         
         component =  ReactDOM.render(
         <ReactChildRenderer {...props}
          render = {(renderProps) => <Component {...renderProps}/>}
@@ -24,7 +24,7 @@ const ReactInitializer = (function(Component,containerId){
         });
     }
 
-    var renderAsyncComponent = (props,moduleRef) => {
+    const renderAsyncComponent = (props,moduleRef) => {
         return new Promise((resolve,reject) => {
             renderComponent(props,moduleRef,resolve)
         })
@@ -50,7 +50,7 @@ const ReactInitializer = (function(Component,containerId){
 export default class ReactRenderer {
     static  create(props) {
         const {Component,containerId,...compProps} = {...props}        
-        var componentModule = Object.create(ReactInitializer(Component,containerId))
+        const componentModule = Object.create(ReactInitializer(Component,containerId))
         if(compProps.props.async) {
             return componentModule.renderAsyncComponent(compProps.props,componentModule)
         } else {
