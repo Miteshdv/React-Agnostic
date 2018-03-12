@@ -1,3 +1,5 @@
+"use strict";
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import ReactChildRenderer from './child/reactchild'
@@ -14,14 +16,18 @@ const ReactInitializer = (function(Component,containerId){
         getCompRef().state
     }
 
-    const renderComponent = (props,moduleRef,resolve) => {         
-        component =  ReactDOM.render(
+    const renderComponent = (props,moduleRef,resolve) => {  
+
+        component =  ReactDOM.render(React.createElement(ReactChildRenderer, {...props,
+                     render: function render(renderProps) {
+                     return React.createElement(Component, renderProps);}}), 
+                     document.getElementById(containerId),() => resolve?resolve(moduleRef):props.callBacks.componentLoaded?props.callBacks.componentLoaded.apply():null);
+        /* JSX */
+        /*ReactDOM.render(
         <ReactChildRenderer {...props}
          render = {(renderProps) => <Component {...renderProps}/>}
         />, 
-        document.getElementById(containerId),() =>{
-            resolve?resolve(moduleRef):props.callBacks.componentLoaded?props.callBacks.componentLoaded.apply():null
-        });
+        document.getElementById(containerId),() => resolve?resolve(moduleRef):props.callBacks.componentLoaded?props.callBacks.componentLoaded.apply():null)*/
     }
 
     const renderAsyncComponent = (props,moduleRef) => {
