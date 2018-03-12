@@ -22,12 +22,7 @@ const ReactInitializer = (function(Component,containerId){
                      render: function render(renderProps) {
                      return React.createElement(Component, renderProps);}}), 
                      document.getElementById(containerId),() => resolve?resolve(moduleRef):props.callBacks.componentLoaded?props.callBacks.componentLoaded.apply():null);
-        /* JSX */
-        /*ReactDOM.render(
-        <ReactChildRenderer {...props}
-         render = {(renderProps) => <Component {...renderProps}/>}
-        />, 
-        document.getElementById(containerId),() => resolve?resolve(moduleRef):props.callBacks.componentLoaded?props.callBacks.componentLoaded.apply():null)*/
+    
     }
 
     const renderAsyncComponent = (props,moduleRef) => {
